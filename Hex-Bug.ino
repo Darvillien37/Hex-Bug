@@ -9,9 +9,9 @@ void setup() {
   
   // put your setup code here, to run once:
   spider.Setup();
-  delay(100);
+  delay(1000);
   spider.ToStanding();
-  delay(100);
+  delay(1000);
 
 }
 
