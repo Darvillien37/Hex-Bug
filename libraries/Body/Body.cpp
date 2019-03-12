@@ -9,9 +9,10 @@ Body::Body()
 void Body::Setup()
 {
 	//parameters are: pin, min, max, initialPosition.	
-	FL_Leg.SetHorizJoint(8, 50, 130, 90);
-	FL_Leg.SetVertJoint(9, 50, 130, 90);
-	FL_Leg.SetReachJoint(10, 50, 130, 90);
+	FR_Leg.SetHorizJoint(8, 50, 130, 90);
+	FR_Leg.SetVertJoint(9, 50, 130, 90);
+	//Bounds checked:
+	FR_Leg.SetReachJoint(10, 0, 120, 90);
 
 }
 
@@ -19,7 +20,7 @@ void Body::Setup()
 
 void Body::ToStanding()
 {
-	FL_Leg.MoveJoints(90, 125, 70);
+	FR_Leg.MoveJoints(90, 70, 30);
 }
 
 
@@ -34,9 +35,9 @@ void Body::StepFoward(int steps)
 	int stepsTaken = 0;
 	while (stepsTaken < steps)
 	{
-		h = d_NumScale(sin(legCounter), -1, 1, FL_Leg.GetHMin(), FL_Leg.GetHMax());
-		v = d_NumScale(cos(legCounter), -1, 1, FL_Leg.GetVMin(), FL_Leg.GetVMax());
-		FL_Leg.MoveJoints(
+		h = d_NumScale(cos(legCounter), -1, 1, FR_Leg.GetHMin(), FR_Leg.GetHMax());
+		v = d_NumScale(sin(legCounter), -1, 1, FR_Leg.GetVMin(), FR_Leg.GetVMax());
+		FR_Leg.MoveJoints(
 			h,
 			v,
 			-1);
